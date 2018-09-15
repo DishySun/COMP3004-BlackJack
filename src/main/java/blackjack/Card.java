@@ -10,6 +10,16 @@ public class Card {
 		this.suit = suit;
 		this.rank = rank;
 	}
+	public Card(String c) {
+		String s = c.substring(0,1);
+		String r = c.substring(1);
+		suit = Suit.valueOf(s);
+		if (r.equals("A")) rank = 1;
+		else if (r.equals("J")) rank = 11;
+		else if (r.equals("Q")) rank = 12;
+		else if (r.equals("K")) rank = 13;
+		else rank = Integer.parseInt(r);
+	}
 
 	//getters
 	public Suit getSuit() {return suit;}

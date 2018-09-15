@@ -27,4 +27,8 @@ public class DeckTest extends TestCase{
 		}
 		assertTrue(timesDrewTwoSameCard<10);
 	}
+	
+	public void testIniFDeck() {
+		Deck testDeck = new Deck();
+	}
 }
