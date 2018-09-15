@@ -13,7 +13,7 @@ public class Deck {
 	//console: add all 52 card and shuffle
 	public void iniCDeck() {}
 	//file: read from a file
-	public void iniFDeck() {}
+	public void iniFDeck(String fileName) {}
 	
 	public Card draw() {}
 	

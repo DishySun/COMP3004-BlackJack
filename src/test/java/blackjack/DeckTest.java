@@ -1,5 +1,6 @@
 package blackjack;
 import junit.framework.TestCase;
+import java.io.*;
 
 public class DeckTest extends TestCase{
 	public void testConstructor() {
@@ -30,5 +31,29 @@ public class DeckTest extends TestCase{
 	
 	public void testIniFDeck() {
 		Deck testDeck = new Deck();
+		String fileName = "test1.txt";
+		testDeck.iniFDeck(fileName);
+		
+		assertEquals(4, testDeck.size());
+		
+		Card c = testDeck.draw();
+		assertEquals(Card.Suit.S, c.getSuit());
+		assertEquals(13, c.getRank());
+		assertEquals(3, testDeck.size());
+		//assertTrue(testText.equals("SK HA HQ DJ"));
+		c = testDeck.draw();
+		assertEquals(Card.Suit.H, c.getSuit());
+		assertEquals(1, c.getRank());
+		assertEquals(2, testDeck.size());
+		
+		c = testDeck.draw();
+		assertEquals(Card.Suit.H, c.getSuit());
+		assertEquals(12, c.getRank());
+		assertEquals(1, testDeck.size());
+		
+		c = testDeck.draw();
+		assertEquals(Card.Suit.D, c.getSuit());
+		assertEquals(11, c.getRank());
+		assertEquals(0, testDeck.size());
 	}
 }
