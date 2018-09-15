@@ -20,9 +20,13 @@ public class Card {
 		String c = suit.toString();
 		switch (rank) {
 			case 1: c += "A";
+					break;
 			case 11: c += "J";
+					break;
 			case 12: c += "Q";
+					break;
 			case 13: c += "K";
+					break;
 			default: c += Integer.toString(rank);
 		}
 		return c;

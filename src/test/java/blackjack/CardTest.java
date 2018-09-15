@@ -7,4 +7,9 @@ public class CardTest extends TestCase{
 		assertEquals(Card.Suit.H, c.getSuit());
 		assertEquals(13, c.getRank());
 	}
+	
+	public void testToString() {
+		Card c = new Card(Card.Suit.H,12);
+		assertEquals("HQ", c.toString());
+	}
 }
