@@ -184,4 +184,20 @@ public class PlayerTest extends TestCase{
 		expectedString += "Hand 2: [D10, C5] Score: 15\n";
 		assertEquals(expectedString, testPlayer.toString());
 	}
+	public void testToString2() {
+		Deck testDeck = new Deck();
+		testDeck.iniFDeck("Player Test with split hand.txt");
+		//S10 D10 SQ C5 H5 SA CA D9
+		Dealer testPlayer = new Dealer();
+		testPlayer.drawTwoToStart(testDeck.draw(), testDeck.draw());
+		testPlayer.split(testDeck.draw(), testDeck.draw());
+		testPlayer.stand();
+		testPlayer.stand();
+		//S10 SQ
+		//D10 C5
+		String expectedString = "Dealer Computer(Very Hard):\n";
+		expectedString += "Hand 1: [S10, SQ] Score: 20 (Highest)\n";
+		expectedString += "Hand 2: [D10, C5] Score: 15\n";
+		assertEquals(expectedString, testPlayer.toString());
+	}
 }

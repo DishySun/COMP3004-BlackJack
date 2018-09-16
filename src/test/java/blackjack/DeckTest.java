@@ -28,7 +28,7 @@ public class DeckTest extends TestCase{
 		assertTrue(timesDrewTwoSameCard<10);
 	}
 	
-	public void testIniFDeck() {
+	/*public void testIniFDeck() {
 		Deck testDeck = new Deck();
 		String fileName = "Deck Test.txt";
 		testDeck.iniFDeck(fileName);
@@ -54,5 +54,5 @@ public class DeckTest extends TestCase{
 		assertEquals(Card.Suit.D, c.getSuit());
 		assertEquals(11, c.getRank());
 		assertEquals(0, testDeck.size());
-	}
+	}*/
 }

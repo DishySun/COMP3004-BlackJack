@@ -27,7 +27,7 @@ public class Deck {
 		Collections.shuffle(deck);
 	}
 	//file: read from a file
-	public void iniFDeck(String fileName) {
+	/*public void iniFDeck(String fileName) {
 		String path = "src/main/resources/" + fileName;
 		String line = null;
 		String a = null;
@@ -64,12 +64,7 @@ public class Deck {
 	    Stack<String> strList = new Stack<String>();
 	    strList.addAll(Arrays.asList(arr));
 	    while (strList.size() > 0) {deck.push(new Card(strList.pop()));}
-	}
-	public static void main(String[] args) {
-		String fileName = "test1.txt";
-		Deck d = new Deck();
-		d.iniFDeck(fileName);
-	}
+	}*/
 	
 	public Card draw() {return deck.pop();}
 	
