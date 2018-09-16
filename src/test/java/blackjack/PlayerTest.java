@@ -166,7 +166,7 @@ public class PlayerTest extends TestCase{
 		Hand bestHand = testPlayer.findBestHand();
 		//10 10 5 = 25
 		//10 5 1 1 9 = 26
-		assertEquals(25, bestHand.getScore());
+		assertEquals(null, bestHand);
 	}
 	public void testToString() {}
 }
