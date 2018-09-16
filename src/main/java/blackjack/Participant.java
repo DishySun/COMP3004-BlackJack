@@ -48,7 +48,11 @@ public abstract class Participant {
 			if (getFirstHand().isBust() && hands.size()<2) finish = true;
 		}
 	}
-	public void stand() {}
+	public void stand() {
+		if (hands.size() > 1 && !getFirstHand().isBust() && !getFirstHand().isStand())
+			getFirstHand().standThis();
+		else finish = true;
+	}
 	public Hand findBestHand() {}
 	public abstract String toString() {}
 	

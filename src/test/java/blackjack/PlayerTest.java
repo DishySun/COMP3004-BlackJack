@@ -106,7 +106,67 @@ public class PlayerTest extends TestCase{
 		assertEquals(9,testPlayer.getSplitHand().getHand().get(4).getRank());
 		assertEquals(26, testPlayer.getSplitHand().getScore());
 	}
-	public void testStand() {}
-	public void testFindBestHand() {}
+	public void testStand() {
+		Deck testDeck = new Deck();
+		testDeck.iniFDeck("Player Test.txt");
+		//S10 D3 SQ C5 H5 SA CA D2
+		Player testPlayer = new Player();
+		testPlayer.drawTwoToStart(testDeck.draw(), testDeck.draw());
+		testPlayer.stand();
+		assertTrue(testPlayer.isFinish());
+		assertEquals(13, testPlayer.getFirstHand().getScore());
+	}
+	public void testStand2() {
+		Deck testDeck = new Deck();
+		testDeck.iniFDeck("Player Test with split hand.txt");
+		//S10 D10 SQ C5 H5 SA CA D9
+		Player testPlayer = new Player();
+		testPlayer.drawTwoToStart(testDeck.draw(), testDeck.draw());
+		testPlayer.split(testDeck.draw(), testDeck.draw());
+		testPlayer.stand();
+		assertFalse(testPlayer.isFinish());
+		assertEquals(20, testPlayer.getFirstHand().getScore());
+		testPlayer.stand();
+		assertTrue(testPlayer.isFinish());
+		assertEquals(15, testPlayer.getSplitHand().getScore());
+	}
+	public void testFindBestHand() {
+		Deck testDeck = new Deck();
+		testDeck.iniFDeck("Player Test.txt");
+		//S10 D3 SQ C5 H5 SA CA D2
+		Player testPlayer = new Player();
+		testPlayer.drawTwoToStart(testDeck.draw(), testDeck.draw());
+		testPlayer.stand();
+		Hand bestHand = testPlayer.findBestHand();
+		assertEquals(13, bestHand.getScore());
+	}
+	public void testFindBestHand2() {
+		Deck testDeck = new Deck();
+		testDeck.iniFDeck("Player Test with split hand.txt");
+		//S10 D10 SQ C5 H5 SA CA D9
+		Player testPlayer = new Player();
+		testPlayer.drawTwoToStart(testDeck.draw(), testDeck.draw());
+		testPlayer.split(testDeck.draw(), testDeck.draw());
+		testPlayer.stand();
+		testPlayer.stand();
+		Hand bestHand = testPlayer.findBestHand();
+		assertEquals(20, bestHand.getScore());
+	}
+	public void testFindBestHand3() {
+		Deck testDeck = new Deck();
+		testDeck.iniFDeck("Player Test with split hand.txt");
+		//S10 D10 SQ C5 H5 SA CA D9
+		Player testPlayer = new Player();
+		testPlayer.drawTwoToStart(testDeck.draw(), testDeck.draw());
+		testPlayer.split(testDeck.draw(), testDeck.draw());
+		testPlayer.hit(testDeck.draw());
+		testPlayer.hit(testDeck.draw());
+		testPlayer.hit(testDeck.draw());
+		testPlayer.hit(testDeck.draw());
+		Hand bestHand = testPlayer.findBestHand();
+		//10 10 5 = 25
+		//10 5 1 1 9 = 26
+		assertEquals(25, bestHand.getScore());
+	}
 	public void testToString() {}
 }
