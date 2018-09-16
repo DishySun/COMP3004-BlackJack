@@ -25,8 +25,20 @@ public abstract class Participant {
 	public Boolean isFinish() {return finish;}
 	
 	//algorithm
-	public void drawTwoToStart(Card c1, Card c2) {}
-	public void split(Card c1, Card c2) {}
+	public void drawTwoToStart(Card c1, Card c2) {
+		hands.add(new Hand());
+		getFirstHand().add(c1);
+		getFirstHand().add(c2);
+		if (getFirstHand().getScore() == 21) finish = true;
+		else finish = false;
+	}
+	public void split(Card c1, Card c2) {
+		hands.add(new Hand());
+		getSplitHand().add(getFirstHand().remove());
+		getFirstHand().add(c1);
+		getSplitHand().add(c2);
+		if(getFirstHand().getScore() == 21 || getSplitHand().getScore() == 21) finish = true;
+	}
 	public void hit() {}
 	public void stand() {}
 	public Hand findBestHand() {}
