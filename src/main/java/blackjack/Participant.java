@@ -39,7 +39,7 @@ public abstract class Participant {
 		getSplitHand().add(c2);
 		if(getFirstHand().getScore() == 21 || getSplitHand().getScore() == 21) finish = true;
 	}
-	public void hit() {}
+	public void hit(Card c) {}
 	public void stand() {}
 	public Hand findBestHand() {}
 	public abstract String toString() {}

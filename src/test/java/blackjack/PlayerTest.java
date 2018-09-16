@@ -58,7 +58,54 @@ public class PlayerTest extends TestCase{
 		assertEquals(5,testPlayer.getSplitHand().getHand().get(1).getRank());
 		assertEquals(16, testPlayer.getSplitHand().getScore());
 	}
-	public void testHit() {}
+	public void testHit() {
+		Deck testDeck = new Deck();
+		testDeck.iniFDeck("Player Test.txt");
+		//S10 D3 SQ C5 H5 SA CA D2
+		Player testPlayer = new Player();
+		testPlayer.drawTwoToStart(testDeck.draw(), testDeck.draw());
+		testPlayer.hit(testDeck.draw());
+		assertTrue(testPlayer.isFinish());
+		assertEquals(23, testPlayer.getFirstHand().getScore());
+	}
+	
+	public void testHit2() {
+		Deck testDeck = new Deck();
+		testDeck.iniFDeck("Player Test with split hand.txt");
+		//S10 D10 SQ C5 H5 SA CA D2
+		Player testPlayer = new Player();
+		testPlayer.drawTwoToStart(testDeck.draw(), testDeck.draw());
+		testPlayer.split(testDeck.draw(), testDeck.draw());
+		testPlayer.hit(testDeck.draw());
+		assertFalse(testPlayer.isFinish());
+		assertEquals(Card.Suit.H,testPlayer.getFirstHand().getHand().get(2).getSuit());
+		assertEquals(5,testPlayer.getFirstHand().getHand().get(2).getRank());
+		assertEquals(25, testPlayer.getFirstHand().getScore());
+	}
+	public void testHit3() {
+		Deck testDeck = new Deck();
+		testDeck.iniFDeck("Player Test with split hand.txt");
+		//S10 D10 SQ C5 H5 SA CA D9
+		Player testPlayer = new Player();
+		testPlayer.drawTwoToStart(testDeck.draw(), testDeck.draw());
+		testPlayer.split(testDeck.draw(), testDeck.draw());
+		testPlayer.hit(testDeck.draw());
+		testPlayer.hit(testDeck.draw());
+		assertFalse(testPlayer.isFinish());
+		assertEquals(Card.Suit.S,testPlayer.getSplitHand().getHand().get(2).getSuit());
+		assertEquals(1,testPlayer.getSplitHand().getHand().get(2).getRank());
+		assertEquals(16, testPlayer.getSplitHand().getScore());
+		testPlayer.hit(testDeck.draw());
+		assertFalse(testPlayer.isFinish());
+		assertEquals(Card.Suit.C,testPlayer.getSplitHand().getHand().get(3).getSuit());
+		assertEquals(1,testPlayer.getSplitHand().getHand().get(3).getRank());
+		assertEquals(17, testPlayer.getSplitHand().getScore());
+		testPlayer.hit(testDeck.draw());
+		assertTrue(testPlayer.isFinish());
+		assertEquals(Card.Suit.D,testPlayer.getSplitHand().getHand().get(4).getSuit());
+		assertEquals(9,testPlayer.getSplitHand().getHand().get(4).getRank());
+		assertEquals(25, testPlayer.getSplitHand().getScore());
+	}
 	public void testStand() {}
 	public void testFindBestHand() {}
 	public void testToString() {}
