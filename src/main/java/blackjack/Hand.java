@@ -54,7 +54,9 @@ public class Hand {
 	public void standThis() {stand = true;}
 	public String toString() {
 		String result = "";
-		result += (hand.toString() + " Score: " + score);
+		result += hand.toString();
+		if (score == 21 && hand.size() < 3) result += " BLACK JACK! ";
+		else result+= (" Score: " + score);
 		if (bust) result += "(Bust!)";
 		return result;
 	}
