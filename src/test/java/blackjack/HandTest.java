@@ -10,6 +10,9 @@ public class HandTest extends TestCase{
 		testHand.add(new Card(Card.Suit.D, 6));
 		assertEquals(8, testHand.getScore());
 		assertFalse(testHand.isBust());
+		//test toString()
+		//assertTrue(testHand.toString().equals("[H2, D6] Socre: 8"));
+		assertEquals("[H2, D6] Score: 8", testHand.toString());
 	}
 	public void testCalculateScore2() {
 		Hand testHand = new Hand();
@@ -25,6 +28,7 @@ public class HandTest extends TestCase{
 		testHand.add(new Card(Card.Suit.S, 9));
 		assertEquals(24, testHand.getScore());
 		assertTrue(testHand.isBust());
+		assertEquals("[HA, D6, C8, S9] Score: 24(Bust!)", testHand.toString());
 	}
 	public void testCalculateScore3() {
 		Hand testHand = new Hand();
@@ -43,6 +47,7 @@ public class HandTest extends TestCase{
 		testHand.add(new Card(Card.Suit.S, 10));
 		assertEquals(22, testHand.getScore());
 		assertTrue(testHand.isBust());
+		assertEquals("[HA, DA, CA, S9, S10] Score: 22(Bust!)", testHand.toString());
 	}
 	public void testCalculateScore4() {
 		Hand testHand = new Hand();
@@ -58,7 +63,6 @@ public class HandTest extends TestCase{
 		testHand.add(new Card("S10"));
 		assertEquals(22, testHand.getScore());
 		assertTrue(testHand.isBust());
-
-
+		assertEquals("[HA, DA, CK, S10] Score: 22(Bust!)", testHand.toString());
 	}
 }

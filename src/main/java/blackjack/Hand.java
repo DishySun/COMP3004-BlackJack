@@ -21,7 +21,26 @@ public class Hand {
 	public Boolean isStand() {return stand;}
 	public Boolean isBust() {return bust;}
 	
-	private void calculateScore() {}
+	private void calculateScore() {
+		int amountOfAce = 0;
+		int s = 0;
+		for (Card c : this.hand) {
+			if (c.getRank() == 1) {
+				s += 11;
+				amountOfAce += 1;
+			} else if(c.getRank() > 10) s+= 10;
+			else s += c.getRank();
+		}
+		if (s > 21 && amountOfAce > 0) {
+			while (amountOfAce > 0) {
+				amountOfAce -=1;
+				s -= 10;
+				if (s <= 21) break;
+			}
+		}
+		if (s > 21) bust = true;
+		score = s;
+	}
 	
 	public void add(Card c) {
 		hand.add(c);
@@ -33,5 +52,10 @@ public class Hand {
 		return c;
 	}
 	public void standThis() {stand = true;}
-	public String toString() {}
+	public String toString() {
+		String result = "";
+		result += (hand.toString() + " Score: " + score);
+		if (bust) result += "(Bust!)";
+		return result;
+	}
 }
