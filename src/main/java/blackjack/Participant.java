@@ -20,11 +20,13 @@ public abstract class Participant {
 	//getters
 	public String getName() {return name;}
 	public ArrayList<Hand> getHands(){return hands;}
+	public Hand getFirstHand() {return hands.get(0);}
+	public Hand getSplitHand() {return hands.get(1);}
 	public Boolean isFinish() {return finish;}
 	
 	//algorithm
-	public void drawTwoToStart() {}
-	public void split() {}
+	public void drawTwoToStart(Card c1, Card c2) {}
+	public void split(Card c1, Card c2) {}
 	public void hit() {}
 	public void stand() {}
 	public Hand findBestHand() {}

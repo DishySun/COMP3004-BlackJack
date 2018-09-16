@@ -30,7 +30,7 @@ public class DeckTest extends TestCase{
 	
 	public void testIniFDeck() {
 		Deck testDeck = new Deck();
-		String fileName = "test1.txt";
+		String fileName = "Deck Test.txt";
 		testDeck.iniFDeck(fileName);
 		
 		assertEquals(4, testDeck.size());

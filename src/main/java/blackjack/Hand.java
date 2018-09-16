@@ -16,7 +16,7 @@ public class Hand {
 	}
 	
 	//getters
-	//public ArrayList<Card> getHand() {return hand;}
+	public ArrayList<Card> getHand() {return hand;}
 	public int getScore() {return score;}
 	public Boolean isStand() {return stand;}
 	public Boolean isBust() {return bust;}
