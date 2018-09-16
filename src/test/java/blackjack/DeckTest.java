@@ -9,15 +9,15 @@ public class DeckTest extends TestCase{
 	
 	public void testIniCDeck() {
 		Deck testDeck = new Deck();
-		testDeck.iniCDeck();
+		testDeck.iniDeck();
 		assertEquals(52, testDeck.size());
 	}
 	
 	public void testCDeckIsShuffled() {
 		Deck testDeck1 = new Deck();
 		Deck testDeck2 = new Deck();
-		testDeck1.iniCDeck();
-		testDeck2.iniCDeck();
+		testDeck1.iniDeck();
+		testDeck2.iniDeck();
 		int timesDrewTwoSameCard = 0;
 		for (int i = 0; i < 50; i++) {
 			Card c1 = testDeck1.draw();
@@ -27,32 +27,4 @@ public class DeckTest extends TestCase{
 		}
 		assertTrue(timesDrewTwoSameCard<10);
 	}
-	
-	/*public void testIniFDeck() {
-		Deck testDeck = new Deck();
-		String fileName = "Deck Test.txt";
-		testDeck.iniFDeck(fileName);
-		
-		assertEquals(4, testDeck.size());
-		
-		Card c = testDeck.draw();
-		assertEquals(Card.Suit.S, c.getSuit());
-		assertEquals(13, c.getRank());
-		assertEquals(3, testDeck.size());
-		//assertTrue(testText.equals("SK HA HQ DJ"));
-		c = testDeck.draw();
-		assertEquals(Card.Suit.H, c.getSuit());
-		assertEquals(1, c.getRank());
-		assertEquals(2, testDeck.size());
-		
-		c = testDeck.draw();
-		assertEquals(Card.Suit.H, c.getSuit());
-		assertEquals(12, c.getRank());
-		assertEquals(1, testDeck.size());
-		
-		c = testDeck.draw();
-		assertEquals(Card.Suit.D, c.getSuit());
-		assertEquals(11, c.getRank());
-		assertEquals(0, testDeck.size());
-	}*/
 }

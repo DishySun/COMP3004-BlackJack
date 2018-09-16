@@ -16,7 +16,7 @@ public class Deck {
 	
 	//deck initialization
 	//console: add all 52 card and shuffle
-	public void iniCDeck() {
+	public void iniDeck() {
 		//initial deck with 52 card and randomly shuffle
 		for(Card.Suit s: Card.Suit.values()) {
 			for (int i = 1; i < 14; i++) {
