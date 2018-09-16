@@ -38,8 +38,8 @@ public class Hand {
 				if (s <= 21) break;
 			}
 		}
-		if (s > 21) bust = true;
 		score = s;
+		if (score > 21) bust = true;
 	}
 	
 	public void add(Card c) {

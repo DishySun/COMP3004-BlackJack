@@ -104,7 +104,7 @@ public class PlayerTest extends TestCase{
 		assertTrue(testPlayer.isFinish());
 		assertEquals(Card.Suit.D,testPlayer.getSplitHand().getHand().get(4).getSuit());
 		assertEquals(9,testPlayer.getSplitHand().getHand().get(4).getRank());
-		assertEquals(25, testPlayer.getSplitHand().getScore());
+		assertEquals(26, testPlayer.getSplitHand().getScore());
 	}
 	public void testStand() {}
 	public void testFindBestHand() {}

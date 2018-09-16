@@ -39,7 +39,15 @@ public abstract class Participant {
 		getSplitHand().add(c2);
 		if(getFirstHand().getScore() == 21 || getSplitHand().getScore() == 21) finish = true;
 	}
-	public void hit(Card c) {}
+	public void hit(Card c) {
+		if (getFirstHand().isBust() || getFirstHand().isStand()) {
+			getSplitHand().add(c);
+			if (getSplitHand().isBust()) finish = true;
+		} else {
+			getFirstHand().add(c);
+			if (getFirstHand().isBust() && hands.size()<2) finish = true;
+		}
+	}
 	public void stand() {}
 	public Hand findBestHand() {}
 	public abstract String toString() {}
