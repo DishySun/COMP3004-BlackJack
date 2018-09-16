@@ -1,6 +1,5 @@
 package blackjack;
 import junit.framework.TestCase;
-import java.io.*;
 
 public class DeckTest extends TestCase{
 	public void testConstructor() {
