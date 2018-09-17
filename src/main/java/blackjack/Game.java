@@ -5,9 +5,9 @@ public class Game {
 	private Dealer dealer;
 	private Deck deck;
 	
-	public Game(Player player, Dealer dealer) {
+	public Game(Player player) {
 		this.player = player;
-		this.dealer = dealer;
+		dealer = new Dealer();
 		deck = new Deck();
 	}
 	
@@ -16,36 +16,35 @@ public class Game {
 	public Dealer getDealer(){return dealer;}
 	public Deck getDeck() {return deck;}
 	
+	//deck methods
+	public void iniDeck() {deck.iniDeck();}
 	
-	
-	private void drawTwoAtBeginnin() {
+	public Card draw() {return deck.draw();}
+	public void drawTwoAtBeginnin() {
 		player.drawTwoToStart(deck.draw(), deck.draw());
 		dealer.drawTwoToStart(deck.draw(), deck.draw());
 	}
-	private Boolean canPlayerSplit() {
+	public Boolean canPlayerSplit() {
 		if(player.getFirstHand().getHand().get(0).getRank() == player.getFirstHand().getHand().get(1).getRank())return true;
 		else return false;
 	}
-	private Boolean canDealerSplit() {
+	public Boolean canDealerSplit() {
 		if(dealer.getFirstHand().getHand().get(0).getRank() == dealer.getFirstHand().getHand().get(1).getRank())return true;
 		else return false;
 	}
-	private Boolean isGameFinish() {
+	public Boolean isGameFinish() {
 		if (player.isFinish() && dealer.isFinish()) return true;
 		else return false;
 	}
-	private void playerSplit() {player.split(deck.draw(), deck.draw());}
-	private void dealerSplit() {dealer.split(deck.draw(), deck.draw());}
-	private void playerHit() {player.hit(deck.draw());}
-	private void dealerHit() {dealer.hit(deck.draw());}
-	private void playerStand() {player.stand();}
-	private void dealerStand() {dealer.stand();}
+	public void playerSplit() {player.split(deck.draw(), deck.draw());}
+	public void dealerSplit() {dealer.split(deck.draw(), deck.draw());}
+	public void playerHit() {player.hit(deck.draw());}
+	public void dealerHit() {dealer.hit(deck.draw());}
+	public void playerStand() {player.stand();}
+	public void dealerStand() {dealer.stand();}
 	
-	private void playerTurn() {}
-	private void dealerTurn() {}
-	private Participant determineWinner() {}
-	public Participant startConsoleGame() {}
-	public Participant startFileGame(String fileName) {}
+	public Participant determineWinner() {}
+
 	
 	
 }

@@ -65,4 +65,33 @@ public class HandTest extends TestCase{
 		assertTrue(testHand.isBust());
 		assertEquals("[HA, DA, CK, S10] Score: 22(Bust!)", testHand.toString());
 	}
+	//from prof email
+	//two Ace: SA H8 DA 20
+	public void testFromEmail() {
+		Hand testHand = new Hand();
+		testHand.add(new Card("SA"));
+		testHand.add(new Card("H8"));
+		testHand.add(new Card("DA"));
+		assertEquals(20, testHand.getScore());
+	}
+	//two Ace: H8 S9 SA HA
+	public void testFromEmail2() {
+		Hand testHand = new Hand();
+		testHand.add(new Card("H8"));
+		testHand.add(new Card("S9"));
+		testHand.add(new Card("SA"));
+		testHand.add(new Card("HA"));
+		assertEquals(19, testHand.getScore());
+	}
+	//Ace changed from 11 to 1
+	//SA H5 DA C10 = 17
+	public void testFromEmail3() {
+		Hand testHand = new Hand();
+		testHand.add(new Card("SA"));
+		testHand.add(new Card("H5"));
+		testHand.add(new Card("DA"));
+		testHand.add(new Card("C10"));
+		assertEquals(17, testHand.getScore());
+	}
+	
 }
