@@ -4,8 +4,7 @@ import junit.framework.TestCase;
 public class DealerTest extends TestCase{
 	public void testGetChoice1() {
 		Dealer testDealer = new Dealer();
-		testDealer.hit(new Card("D2"));
-		testDealer.hit(new Card("H7"));
+		testDealer.drawTwoToStart(new Card("D2"), new Card("H7"));
 		//score < 17
 		assertEquals("H", testDealer.getChoice());
 		testDealer.hit(new Card("C8"));
@@ -17,8 +16,7 @@ public class DealerTest extends TestCase{
 	}
 	public void testGetChoice2() {
 		Dealer testDealer = new Dealer();
-		testDealer.hit(new Card("D2"));
-		testDealer.hit(new Card("H4"));
+		testDealer.drawTwoToStart(new Card("D2"), new Card("H4"));
 		//score < 17
 		assertEquals("H", testDealer.getChoice());
 		testDealer.hit(new Card("C1"));
@@ -31,8 +29,7 @@ public class DealerTest extends TestCase{
 	public void testGetChoice3() {
 		//with splitting
 		Dealer testDealer = new Dealer();
-		testDealer.hit(new Card("D5"));
-		testDealer.hit(new Card("H5"));
+		testDealer.drawTwoToStart(new Card("D5"), new Card("H5"));
 		//split
 		assertEquals("D", testDealer.getChoice());
 		

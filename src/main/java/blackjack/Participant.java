@@ -33,7 +33,7 @@ public abstract class Participant {
 		else finish = false;
 	}
 	public Boolean canSplit() {
-		if (hands.size() < 2 && getFirstHand().getHand().get(0).getRank() == getFirstHand().getHand().get(2).getRank()) return true;
+		if (hands.size() < 2 && getFirstHand().getHand().get(0).getRank() == getFirstHand().getHand().get(1).getRank()) return true;
 		return false;
 	}
 	public void split(Card c1, Card c2) {
