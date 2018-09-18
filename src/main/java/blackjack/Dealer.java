@@ -12,7 +12,6 @@ public class Dealer extends Participant{
 		else currentHand = this.getFirstHand();
 		if (currentHand.getScore() < 17) return "H";
 		if (currentHand.getScore() > 17) return "S";
-		if (currentHand.getScore() > 17) return "S";
 	}
 	public String toString() {
 		String result = "Dealer " + super.name +":\n";
