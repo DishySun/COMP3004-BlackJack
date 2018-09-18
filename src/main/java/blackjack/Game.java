@@ -53,7 +53,12 @@ public class Game {
 	}
 	
 	
-	public Participant determineWinner() {}
+	public Participant determineWinner() {
+		if (player.findBestHand() == null) return dealer;
+		if (dealer.findBestHand() == null) return player;
+		if (player.findBestHand().getScore() > dealer.findBestHand().getScore()) return player;	
+		else return dealer;
+	}
 
 	
 	

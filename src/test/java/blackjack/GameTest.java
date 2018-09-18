@@ -49,6 +49,6 @@ public class GameTest extends TestCase{
 		testGame.playerDrawTwo(new Card("C10"), new Card("D6"));
 		testGame.getPlayer().hit(new Card("H9"));
 		assertEquals(d, testGame.determineWinner());
-		assertEquals(0, testGame.determineWinner().findBestHand().getScore());	
+		assertEquals(null, testGame.determineWinner().findBestHand());	
 	}
 }

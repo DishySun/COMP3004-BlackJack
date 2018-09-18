@@ -54,6 +54,7 @@ public abstract class Participant {
 		else finish = true;
 	}
 	public Hand findBestHand() {
+		if (hands.size() == 0) return null;
 		Hand h1 = getFirstHand();
 		if (hands.size()<2) {
 			if (h1.getScore() <= 21) return h1;
