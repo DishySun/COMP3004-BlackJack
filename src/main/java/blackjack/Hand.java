@@ -13,7 +13,6 @@ public class Hand {
 		score = 0;
 		stand = false;
 		bust = false;
-		finish = false;
 	}
 	
 	//getters
@@ -23,6 +22,12 @@ public class Hand {
 	public Boolean isBust() {return bust;}
 	public Boolean isFinish() {return (bust || stand);}
 	public Boolean isSoft17() {
+		if (score == 17) {
+			int i = 0;
+			for (Card c : hand) {i += c.getRank();}
+			if (i <= 7) return true;
+		}
+		return false;
 	}
 	
 	private void calculateScore() {
