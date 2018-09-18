@@ -15,7 +15,7 @@ public class BlackJackGameTest extends TestCase{
 		GameControl testGame = new GameControl();
 		Participant winner = testGame.testFileGame("File 2.txt");
 		assertEquals(testGame.getPlayer(), winner);
-		assertEquals(15, winner.findBestHand().getScore());
+		assertEquals(20, winner.findBestHand().getScore());
 	}
 	public void testScenario3() {
 		//S10 D3 SQ C5 H H5 H SA S CA D2
@@ -31,7 +31,7 @@ public class BlackJackGameTest extends TestCase{
 		assertEquals(testGame.getPlayer(), winner);
 		assertEquals(20, winner.findBestHand().getScore());
 	}
-	public void TestScenario5() {
+	public void testScenario5() {
 		//SK H9 C5 D5 S H7 CQ SA SQ D2
 		GameControl testGame = new GameControl();
 		Participant winner = testGame.testFileGame("File 5.txt");

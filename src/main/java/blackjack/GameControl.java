@@ -52,7 +52,7 @@ public class GameControl {
 			}
 			printGame();
 		}
-		view.pause("Player's turn finished. Now is dealer's turn.");
+		System.out.println("Player's turn finished. Now is dealer's turn.");
 	}
 	
 	private void playerTurn() {
@@ -72,7 +72,7 @@ public class GameControl {
 		view.pause("Player's turn finished. Now is dealer's turn.");
 	}
 	
-	private void dealerTurn() {
+	private void dealerTurn(Boolean isTest) {
 		while(!game.getDealer().isFinish()) {
 			String s = game.getDealer().getChoice();
 			if (s.equalsIgnoreCase("D")) {
@@ -88,7 +88,7 @@ public class GameControl {
 				game.dealerStand();
 			}
 			printGame();
-			view.pause();
+			if(!isTest)view.pause();
 		}
 	}
 	
@@ -101,17 +101,22 @@ public class GameControl {
 		Participant a = game.determineWinner();
 		if(a != null) return a;
 		playerTurn();
-		dealerTurn();
+		dealerTurn(false);
 		return game.determineWinner();
 	}
 	
 	private Participant startFileGame(ArrayList<String> scenario) {
-		System.out.println(scenario);
+		ArrayList<String> d = new ArrayList<String>();
 		Stack<String> scenarioDeck = new Stack<String>();
 		Stack<String> scenarioPlayerChoice = new Stack<String>();
 		for (String s : scenario) {
-			if (s.length() < 2) scenarioPlayerChoice
+			if (s.length() < 2) scenarioPlayerChoice.push(s);
+			else d.add(s);
 		}
+		ArrayList<String> c = new ArrayList<String>();
+		while (scenarioPlayerChoice.size() > 0) c.add(scenarioPlayerChoice.pop());
+		scenarioDeck.addAll(d);
+		scenarioPlayerChoice.addAll(c);
 		game = new Game("Scenario Player(AI)");
 		System.out.println("\n--------Start a game with file input--------");
 		game.iniDeck(scenarioDeck);
@@ -120,7 +125,7 @@ public class GameControl {
 		Participant a = game.determineWinner();
 		if(a != null) return a;
 		playerTurn(scenarioPlayerChoice);
-		dealerTurn();
+		dealerTurn(true);
 		return game.determineWinner();
 	}
 	
@@ -138,7 +143,7 @@ public class GameControl {
 		while(true) {
 			String path = "src/main/resources/"+fileName;
 			String line = null;
-			String a = null;
+			String a = "";
 			try {
 		        // FileReader reads text files in the default encoding.
 		        FileReader fileReader =
@@ -147,9 +152,9 @@ public class GameControl {
 		        // Always wrap FileReader in BufferedReader.
 		        BufferedReader bufferedReader =
 		            new BufferedReader(fileReader);
-		        while((line = bufferedReader.readLine()) != null) {
-		            a = line;
-		        }
+		        		while((line = bufferedReader.readLine()) != null) {
+		            a += line;
+	        		}
 		        // Always close files.
 		        bufferedReader.close();
 		        String[] arr = a.split("\\s+");
