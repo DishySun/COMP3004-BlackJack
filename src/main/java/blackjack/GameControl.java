@@ -2,6 +2,7 @@ package blackjack;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Stack;
+import java.util.ArrayList;
 
 public class GameControl {
 	private Game game;
@@ -24,7 +25,7 @@ public class GameControl {
 		switch (i) {
 		case 1: 	winner = startConsoleGame();
 				break;
-		case 2: 	Stack<String> scenario = readFile(view.readString("Please enter the file name you want to load: "));
+		case 2: 	ArrayList<String> scenario = readFile(view.readString("Please enter the file name you want to load: "));
 				if (scenario != null) {
 					winner = startFileGame(scenario);
 					break;
@@ -104,13 +105,12 @@ public class GameControl {
 		return game.determineWinner();
 	}
 	
-	private Participant startFileGame(Stack<String> scenario) {
+	private Participant startFileGame(ArrayList<String> scenario) {
 		System.out.println(scenario);
 		Stack<String> scenarioDeck = new Stack<String>();
 		Stack<String> scenarioPlayerChoice = new Stack<String>();
-		while (scenario.size() > 0) {
-			if(scenario.peek().length() > 1) scenarioDeck.push(scenario.pop());
-			else scenarioPlayerChoice.push(scenario.pop());
+		for (String s : scenario) {
+			if (s.length() < 2) scenarioPlayerChoice
 		}
 		game = new Game("Scenario Player(AI)");
 		System.out.println("\n--------Start a game with file input--------");
@@ -133,7 +133,7 @@ public class GameControl {
 		System.out.println(game);
 	}
 	
-	private Stack<String> readFile(String fileName) {
+	private ArrayList<String> readFile(String fileName) {
 		//String fileName = view.readString("Please enter the file name you want to load: ");
 		while(true) {
 			String path = "src/main/resources/"+fileName;
@@ -153,7 +153,7 @@ public class GameControl {
 		        // Always close files.
 		        bufferedReader.close();
 		        String[] arr = a.split("\\s+");
-			    Stack<String> strList = new Stack<String>();
+			    ArrayList<String> strList = new ArrayList<String>();
 			    strList.addAll(Arrays.asList(arr));
 				return strList;
 		    }
@@ -178,5 +178,11 @@ public class GameControl {
 		GameControl bjgame = new GameControl();
 		bjgame .launch();
 	}
+	
+	public Participant testFileGame(String fileName) {
+		return this.startFileGame(this.readFile(fileName));
+	}
+	public Player getPlayer() {return game.getPlayer();}
+	public Dealer getDealer() {return game.getDealer();}
 
 }
