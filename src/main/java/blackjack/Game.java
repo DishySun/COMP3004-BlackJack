@@ -5,21 +5,36 @@ public class Game {
 	private Dealer dealer;
 	private Deck deck;
 	
+	public Game() {
+		player = new Player();
+		dealer = new Dealer();
+	}
 	public Game(Player player) {
 		this.player = player;
 		dealer = new Dealer();
 		deck = new Deck();
 	}
 	
+	
 	//getters
 	public Player getPlayer(){return player;}
 	public Dealer getDealer(){return dealer;}
 	public Deck getDeck() {return deck;}
 	
-	//deck methods
+	//methods from Deck
 	public void iniDeck() {deck.iniDeck();}
 	
-	public Card draw() {return deck.draw();}
+	//methods from Participant
+	public void playerDrawTwo(Card c1, Card c2) {player.drawTwoToStart(c1, c2);}
+	public void dealerDrawTwo(Card c1, Card c2) {dealer.drawTwoToStart(c1, c2);}
+	public void playerSplit() {player.split(deck.draw(), deck.draw());}
+	public void dealerSplit() {dealer.split(deck.draw(), deck.draw());}
+	public void playerHit() {player.hit(deck.draw());}
+	public void dealerHit() {dealer.hit(deck.draw());}
+	public void playerStand() {player.stand();}
+	public void dealerStand() {dealer.stand();}
+	
+	//Game methods
 	public void drawTwoAtBeginnin() {
 		player.drawTwoToStart(deck.draw(), deck.draw());
 		dealer.drawTwoToStart(deck.draw(), deck.draw());
@@ -36,12 +51,7 @@ public class Game {
 		if (player.isFinish() && dealer.isFinish()) return true;
 		else return false;
 	}
-	public void playerSplit() {player.split(deck.draw(), deck.draw());}
-	public void dealerSplit() {dealer.split(deck.draw(), deck.draw());}
-	public void playerHit() {player.hit(deck.draw());}
-	public void dealerHit() {dealer.hit(deck.draw());}
-	public void playerStand() {player.stand();}
-	public void dealerStand() {dealer.stand();}
+	
 	
 	public Participant determineWinner() {}
 
