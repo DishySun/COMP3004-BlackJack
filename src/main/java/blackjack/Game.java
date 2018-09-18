@@ -9,8 +9,8 @@ public class Game {
 		player = new Player();
 		dealer = new Dealer();
 	}
-	public Game(Player player) {
-		this.player = player;
+	public Game(String name) {
+		player = new Player(name);
 		dealer = new Dealer();
 		deck = new Deck();
 	}
@@ -61,6 +61,9 @@ public class Game {
 		else return dealer;
 	}
 
-	
+	public String toString() {
+		String result = player.toString() + "\n" + dealer.toString() + "\n================================";
+		return result;
+	}
 	
 }
