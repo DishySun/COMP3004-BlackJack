@@ -77,9 +77,15 @@ public class View {
 		}
 	}
 	
-	public void pause() {System.out.print(" ---- Press enter to continue...");}
+	public void pause() {
+		System.out.print(" ---- Press enter to continue...");
+		Scanner input = new Scanner(System.in);
+		input.nextLine();
+	}
 	public void pause(String s) {
 		System.out.print(s + " ---- Press enter to continue...");
+		Scanner input = new Scanner(System.in);
+		input.nextLine();
 	}
 
 }

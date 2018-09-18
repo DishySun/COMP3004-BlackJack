@@ -40,13 +40,12 @@ public class Game {
 		dealer.drawTwoToStart(deck.draw(), deck.draw());
 	}
 	public Boolean canPlayerSplit() {
-		if(player.getFirstHand().getHand().get(0).getRank() == player.getFirstHand().getHand().get(1).getRank())return true;
-		else return false;
+		return player.canSplit();
 	}
-	public Boolean canDealerSplit() {
+	/*public Boolean canDealerSplit() {
 		if(dealer.getFirstHand().getHand().get(0).getRank() == dealer.getFirstHand().getHand().get(1).getRank())return true;
 		else return false;
-	}
+	}*/
 	private Boolean isGameFinish() {
 		if (player.isFinish() && dealer.isFinish()) return true;
 		else return false;
