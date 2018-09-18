@@ -43,7 +43,7 @@ public class BlackJackGameTest extends TestCase{
 		Player testPlayer = new Player();
 		Dealer testDealer = new Dealer();
 		Game testGame = new Game();
-		Participant winner = testGame.startFileGame("File 4.txt");
+		Participant winner = testGame.startFileGame("File 5.txt");
 		assertEquals(testPlayer, winner);
 		assertEquals(19, winner.findBestHand().getScore());
 	}

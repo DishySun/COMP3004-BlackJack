@@ -6,7 +6,7 @@ public abstract class Participant {
 	protected ArrayList<Hand> hands;
 	protected Boolean finish;
 	
-	public Participant() {
+	protected Participant() {
 		name = "No Name";
 		hands = new ArrayList<Hand>();
 		finish = false;

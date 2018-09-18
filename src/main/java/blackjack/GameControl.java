@@ -1,4 +1,7 @@
 package blackjack;
+import java.io.*;
+import java.util.Arrays;
+import java.util.Stack;
 
 public class GameControl {
 	private Game game;
@@ -21,8 +24,11 @@ public class GameControl {
 		switch (i) {
 		case 1: 	winner = startConsoleGame();
 				break;
-		case 2: 	winner = startFileGame();
-				break;
+		case 2: 	Stack<String> scenario = readFile(view.readString("Please enter the file name you want to load: "));
+				if (scenario != null) {
+					winner = startFileGame(scenario);
+					break;
+				}
 		default: winner = startConsoleGame();
 		}
 		announceWinner(winner);
@@ -42,6 +48,8 @@ public class GameControl {
 			}
 			printGame();
 		}
+		printGame();
+		view.pause("Player's turn finished. Now is dealer's turn.");
 	}
 	private void dealerTurn() {
 		while(!game.getDealer().isFinish()) {
@@ -64,6 +72,7 @@ public class GameControl {
 	}
 	
 	private Participant startConsoleGame() {
+		System.out.println("\n--------Start a game with console input--------");
 		game.iniDeck();
 		game.drawTwoAtBeginnin();
 		printGame();
@@ -73,7 +82,11 @@ public class GameControl {
 		dealerTurn();
 		return game.determineWinner();
 	}
-	private Participant startFileGame() {return null;}
+	
+	private Participant startFileGame(Stack<String> scenario) {
+		return null;
+	}
+	
 	private void announceWinner(Participant p) {
 		System.out.println("\nThe winner is " + p.getName() + "!");
 		if (p == game.getPlayer()) System.out.println("Congratulations! You win!");
@@ -81,6 +94,41 @@ public class GameControl {
 	}
 	private void printGame() {
 		System.out.println(game);
+	}
+	
+	private Stack<String> readFile(String fileName) {
+		//String fileName = view.readString("Please enter the file name you want to load: ");
+		while(true) {
+			String path = "src/main/resources/"+fileName;
+			String line = null;
+			String a = null;
+			try {
+		        // FileReader reads text files in the default encoding.
+		        FileReader fileReader =
+		            new FileReader(path);
+	
+		        // Always wrap FileReader in BufferedReader.
+		        BufferedReader bufferedReader =
+		            new BufferedReader(fileReader);
+		            a = line;
+		        // Always close files.
+		        bufferedReader.close();
+		        String[] arr = a.split("\\s+");
+			    Stack<String> strList = new Stack<String>();
+			    strList.addAll(Arrays.asList(arr));
+				return strList;
+		    }
+		    catch(FileNotFoundException ex) {
+		        System.out.println("Unable to open file '" + fileName + "'");
+		        fileName = view.readString("Enter again or enter '-1' to start a console game: ");
+		        if (fileName.equals("-1")) break;
+		    }
+		    catch(IOException ex) {
+		        System.out.println("Error reading file '"+ fileName + "'");
+		    }
+		}
+
+		return null;
 	}
 	
 	public void launch() {

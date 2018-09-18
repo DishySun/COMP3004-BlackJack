@@ -1,8 +1,7 @@
 package blackjack;
 import java.util.Stack;
 import java.util.Collections;
-import java.io.*;
-import java.util.Arrays;
+
 
 public class Deck {
 	private Stack<Card> deck;

@@ -21,7 +21,7 @@ public class View {
 	public String readString(String s) {
 		Scanner input = new Scanner(System.in);
 		System.out.print(s);
-		return input.next();
+		return input.nextLine();
 	}
 	
 	public int readGameType() {
@@ -57,7 +57,7 @@ public class View {
 		Scanner input = new Scanner(System.in);
 		while (true) {
 			try {
-				choice = input.nextInt();
+				choice = input.nextInt(); 
 				switch(choice) {
 				case 1: return 1;
 				case 2: return 2;

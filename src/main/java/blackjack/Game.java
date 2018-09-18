@@ -12,7 +12,7 @@ public class Game {
 	public Game(String name) {
 		player = new Player(name);
 		dealer = new Dealer();
-		deck = new Deck();
+		
 	}
 	
 	
@@ -22,7 +22,10 @@ public class Game {
 	public Deck getDeck() {return deck;}
 	
 	//methods from Deck
-	public void iniDeck() {deck.iniDeck();}
+	public void iniDeck() {
+		deck = new Deck();
+		deck.iniDeck();
+	}
 	
 	//methods from Participant
 	public void playerDrawTwo(Card c1, Card c2) {player.drawTwoToStart(c1, c2);}
@@ -47,8 +50,10 @@ public class Game {
 		else return false;
 	}*/
 	private Boolean isGameFinish() {
+		if (player.getFirstHand().getHand().size() < 3 && player.getFirstHand().getScore() == 21) return true;
+		if (dealer.getFirstHand().getHand().size() < 3 && dealer.getFirstHand().getScore() == 21) return true;
 		if (player.isFinish() && dealer.isFinish()) return true;
-		else return false;
+		return false;
 	}
 	
 	
