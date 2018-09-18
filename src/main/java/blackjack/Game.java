@@ -47,7 +47,7 @@ public class Game {
 		if(dealer.getFirstHand().getHand().get(0).getRank() == dealer.getFirstHand().getHand().get(1).getRank())return true;
 		else return false;
 	}
-	public Boolean isGameFinish() {
+	private Boolean isGameFinish() {
 		if (player.isFinish() && dealer.isFinish()) return true;
 		else return false;
 	}
@@ -56,6 +56,7 @@ public class Game {
 	public Participant determineWinner() {
 		if (player.findBestHand() == null) return dealer;
 		if (dealer.findBestHand() == null) return player;
+		if (!isGameFinish() && player.findBestHand().getScore() < 21 && dealer.findBestHand().getScore() <21) return null;
 		if (player.findBestHand().getScore() > dealer.findBestHand().getScore()) return player;	
 		else return dealer;
 	}

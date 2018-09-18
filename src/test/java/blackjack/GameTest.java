@@ -28,6 +28,8 @@ public class GameTest extends TestCase{
 		testGame.dealerDrawTwo(new Card("C6"), new Card("HQ"));
 		testGame.getPlayer().hit(new Card("H3"));
 		testGame.getDealer().hit(new Card("C2"));
+		testGame.getDealer().stand();
+		testGame.getPlayer().stand();
 		assertEquals(p, testGame.determineWinner());
 		assertEquals(19, testGame.determineWinner().findBestHand().getScore());	
 	}
@@ -39,6 +41,8 @@ public class GameTest extends TestCase{
 		testGame.dealerDrawTwo(new Card("C6"), new Card("HQ"));
 		testGame.getPlayer().hit(new Card("H3"));
 		testGame.getDealer().hit(new Card("C3"));
+		testGame.getDealer().stand();
+		testGame.getPlayer().stand();
 		assertEquals(d, testGame.determineWinner());
 		assertEquals(19, testGame.determineWinner().findBestHand().getScore());	
 	}
