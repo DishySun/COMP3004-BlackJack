@@ -38,4 +38,9 @@ public class Dealer extends Participant{
 		}
 		return result;
 	}
+	public String hideFirstCard() {
+		String result = "Dealer " + super.name +":\n";
+		result += "Hand: [(Hide) , " + super.getFirstHand().getHand().get(1).toString() + "]";
+		return result;
+	}
 }

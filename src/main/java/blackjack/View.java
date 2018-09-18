@@ -52,7 +52,7 @@ public class View {
 		System.out.println("What you gonna do?");
 		System.out.println("Hit (Enter \"1\" or \"H\")");
 		System.out.println("Stand (Enter \"2\" or \"S\")");
-		if (canSplit) System.out.println("Hit (Enter \"3\" or \"D\")");
+		if (canSplit) System.out.println("Split (Enter \"3\" or \"D\")");
 		int choice = 0;
 		Scanner input = new Scanner(System.in);
 		while (true) {

@@ -61,7 +61,10 @@ public class Game {
 	}
 
 	public String toString() {
-		String result = player.toString() + "\n" + dealer.toString() + "\n================================";
+		String result = player.toString() + "\n" ;
+		if (player.isFinish()) result += dealer.toString() ;
+		else result += dealer.hideFirstCard();
+		result += "\n================================";
 		return result;
 	}
 	

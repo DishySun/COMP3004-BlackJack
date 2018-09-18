@@ -58,9 +58,9 @@ public class GameControl {
 				System.out.println("Dealer decided to Stand.");
 				game.dealerStand();
 			}
+			printGame();
+			view.pause();
 		}
-		printGame();
-		view.pause();
 	}
 	
 	private Participant startConsoleGame() {
