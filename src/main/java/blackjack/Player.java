@@ -8,7 +8,10 @@ public class Player extends Participant{
 		super(name);
 	}
 	
-	
+	public Boolean canSplit() {
+		if (hands.size() < 2 && getFirstHand().getHand().get(0).getRank() == getFirstHand().getHand().get(1).getRank()) return true;
+		return false;
+	}
 	public String toString() {
 		String result = "Player " + super.name +":\n";
 		result += "Hand";

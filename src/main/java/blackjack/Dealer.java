@@ -5,7 +5,7 @@ public class Dealer extends Participant{
 		super("Computer(Very Hard)");
 	}
 	public String getChoice() {
-		if (super.canSplit()) return "D";
+		if (canSplit()) return "D";
 		Hand currentHand;
 		if (hands.size() < 2) currentHand = this.getFirstHand();
 		else if (this.getFirstHand().isFinish()) currentHand = this.getSplitHand();
@@ -14,6 +14,14 @@ public class Dealer extends Participant{
 		if (currentHand.getScore() > 17) return "S";
 		if (currentHand.isSoft17()) return "H";
 		else return "S";
+	}
+	private Boolean canSplit() {
+		if (hands.size()< 2) {
+			if (getFirstHand().getHand().get(0).getRank() == getFirstHand().getHand().get(1).getRank() && (getFirstHand().getHand().get(0).getRank() + getFirstHand().getHand().get(1).getRank()) <= 17) {
+				return true;
+			}
+		}
+		return false;
 	}
 	public String toString() {
 		String result = "Dealer " + super.name +":\n";

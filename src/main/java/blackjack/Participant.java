@@ -32,10 +32,7 @@ public abstract class Participant {
 		if (getFirstHand().getScore() == 21) finish = true;
 		else finish = false;
 	}
-	public Boolean canSplit() {
-		if (hands.size() < 2 && getFirstHand().getHand().get(0).getRank() == getFirstHand().getHand().get(1).getRank()) return true;
-		return false;
-	}
+	//protected abstract Boolean canSplit();
 	public void split(Card c1, Card c2) {
 		hands.add(new Hand());
 		getSplitHand().add(getFirstHand().remove());

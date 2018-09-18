@@ -47,4 +47,6 @@ public class BlackJackGameTest extends TestCase{
 		assertEquals(testPlayer, winner);
 		assertEquals(19, winner.findBestHand().getScore());
 	}
+	
+	public void testGame() {}
 }
