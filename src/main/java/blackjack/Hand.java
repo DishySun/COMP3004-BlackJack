@@ -13,6 +13,7 @@ public class Hand {
 		score = 0;
 		stand = false;
 		bust = false;
+		finish = false;
 	}
 	
 	//getters
@@ -20,6 +21,9 @@ public class Hand {
 	public int getScore() {return score;}
 	public Boolean isStand() {return stand;}
 	public Boolean isBust() {return bust;}
+	public Boolean isFinish() {return (bust || stand);}
+	public Boolean isSoft17() {
+	}
 	
 	private void calculateScore() {
 		int amountOfAce = 0;

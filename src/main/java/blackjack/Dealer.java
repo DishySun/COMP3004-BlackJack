@@ -4,6 +4,13 @@ public class Dealer extends Participant{
 	public Dealer() {
 		super("Computer(Very Hard)");
 	}
+	public String getChoice() {
+		if (super.canSplit()) return "D";
+		Hand currentHand;
+		if (hands.size() < 2) currentHand = this.getFirstHand();
+		else if (this.getFirstHand().isFinish()) currentHand = this.getSplitHand();
+		
+	}
 	public String toString() {
 		String result = "Dealer " + super.name +":\n";
 		result += "Hand";

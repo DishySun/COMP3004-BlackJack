@@ -94,4 +94,24 @@ public class HandTest extends TestCase{
 		assertEquals(17, testHand.getScore());
 	}
 	
+	public void testIsSoft17_1() {
+		//score is not 17
+		Hand testHand = new Hand();
+		testHand.add(new Card("SA"));
+		assertFalse(testHand.isSoft17());
+	}
+	
+	public void testIsSoft17_2() {
+		//score is 17 but not Soft 17
+		Hand testHand = new Hand();
+		testHand.add(new Card("SA"));
+		assertFalse(testHand.isSoft17());
+	}
+	
+	public void testIsSoft17_3() {
+		//it is Soft 17
+		Hand testHand = new Hand();
+		testHand.add(new Card("SA"));
+		assertTrue(testHand.isSoft17());
+	}
 }
