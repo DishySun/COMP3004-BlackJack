@@ -1,4 +1,5 @@
 package blackjack;
+import java.util.Stack;
 
 public class Game {
 	private Player player;
@@ -25,6 +26,10 @@ public class Game {
 	public void iniDeck() {
 		deck = new Deck();
 		deck.iniDeck();
+	}
+	public void iniDeck(Stack<String> s) {
+		deck = new Deck();
+		deck.iniDeck(s);
 	}
 	
 	//methods from Participant

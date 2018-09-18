@@ -25,7 +25,13 @@ public class Deck {
 		}
 		Collections.shuffle(deck);
 	}
+	
 	//file: read from a file
+	public void iniDeck(Stack<String> s) {
+		while (s.size() > 0) {
+			deck.push(new Card(s.pop()));
+		}
+	}
 	/*public void iniFDeck(String fileName) {
 		String path = "src/main/resources/" + fileName;
 		String line = null;

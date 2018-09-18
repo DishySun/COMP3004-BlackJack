@@ -12,13 +12,13 @@ public class GameControl {
 	}
 	
 	private void createGame() {
-		String name = view.readString("Welcome to COMP3004 A1 Black Jack Game!\nI am your navigator Haiyue Sun\nCoule you tell me your name please? ");
+		String name = view.readString("Coule you tell me your name please? ");
 		if (name.equals("")) game = new Game();
 		else game = new Game(name);
 		System.out.println("OK "+ game.getPlayer().getName() + ". Nice to meet you.");
-		selectGameInput();
 	}
 	private void selectGameInput() {
+		System.out.println("Welcome to COMP3004 A1 Black Jack Game!\nI am your navigator Haiyue Sun.");
 		int i = view.readGameType();
 		Participant winner = null;
 		switch (i) {
@@ -32,6 +32,26 @@ public class GameControl {
 		default: winner = startConsoleGame();
 		}
 		announceWinner(winner);
+	}
+	
+	private void playerTurn(Stack<String> choice) {
+		while (!game.getPlayer().isFinish()) {
+			String c = choice.pop();
+			if (c.equals("H")) {
+				System.out.println("Player chooses to Hit.");
+				game.playerHit();
+			}
+			if (c.equals("S")) {
+				System.out.println("Player chooses to Stand.");
+				game.playerStand();
+			}
+			if (c.equals("D")) {
+				System.out.println("Player chooses to Split.");
+				game.playerSplit();
+			}
+			printGame();
+		}
+		view.pause("Player's turn finished. Now is dealer's turn.");
 	}
 	
 	private void playerTurn() {
@@ -48,9 +68,9 @@ public class GameControl {
 			}
 			printGame();
 		}
-		printGame();
 		view.pause("Player's turn finished. Now is dealer's turn.");
 	}
+	
 	private void dealerTurn() {
 		while(!game.getDealer().isFinish()) {
 			String s = game.getDealer().getChoice();
@@ -73,6 +93,7 @@ public class GameControl {
 	
 	private Participant startConsoleGame() {
 		System.out.println("\n--------Start a game with console input--------");
+		createGame();
 		game.iniDeck();
 		game.drawTwoAtBeginnin();
 		printGame();
@@ -84,7 +105,23 @@ public class GameControl {
 	}
 	
 	private Participant startFileGame(Stack<String> scenario) {
-		return null;
+		System.out.println(scenario);
+		Stack<String> scenarioDeck = new Stack<String>();
+		Stack<String> scenarioPlayerChoice = new Stack<String>();
+		while (scenario.size() > 0) {
+			if(scenario.peek().length() > 1) scenarioDeck.push(scenario.pop());
+			else scenarioPlayerChoice.push(scenario.pop());
+		}
+		game = new Game("Scenario Player(AI)");
+		System.out.println("\n--------Start a game with file input--------");
+		game.iniDeck(scenarioDeck);
+		game.drawTwoAtBeginnin();
+		printGame();
+		Participant a = game.determineWinner();
+		if(a != null) return a;
+		playerTurn(scenarioPlayerChoice);
+		dealerTurn();
+		return game.determineWinner();
 	}
 	
 	private void announceWinner(Participant p) {
@@ -110,7 +147,9 @@ public class GameControl {
 		        // Always wrap FileReader in BufferedReader.
 		        BufferedReader bufferedReader =
 		            new BufferedReader(fileReader);
+		        while((line = bufferedReader.readLine()) != null) {
 		            a = line;
+		        }
 		        // Always close files.
 		        bufferedReader.close();
 		        String[] arr = a.split("\\s+");
@@ -132,7 +171,7 @@ public class GameControl {
 	}
 	
 	public void launch() {
-		createGame();
+		selectGameInput();
 	}
 	
 	public static void main(String[] args) {
