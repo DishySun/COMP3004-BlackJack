@@ -1,5 +1,4 @@
 package blackjack;
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class View {

@@ -4,15 +4,15 @@ import junit.framework.TestCase;
 public class HandTest extends TestCase{
 	public void testCalculateScore1() {
 		Hand testHand = new Hand();
-		testHand.add(new Card(Card.Suit.H, 2));
-		assertEquals(2, testHand.getScore());
+		testHand.add(new Card(Card.Suit.H, 13));
+		assertEquals(10, testHand.getScore());
 		assertFalse(testHand.isBust());
 		testHand.add(new Card(Card.Suit.D, 6));
-		assertEquals(8, testHand.getScore());
+		assertEquals(16, testHand.getScore());
 		assertFalse(testHand.isBust());
 		//test toString()
 		//assertTrue(testHand.toString().equals("[H2, D6] Socre: 8"));
-		assertEquals("[H2, D6] Score: 8", testHand.toString());
+		assertEquals("[HK, D6] Score: 16", testHand.toString());
 	}
 	public void testCalculateScore2() {
 		Hand testHand = new Hand();

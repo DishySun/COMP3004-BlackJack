@@ -6,12 +6,24 @@ import java.util.Collections;
 public class Deck {
 	private Stack<Card> deck;
 	
-	//constructor
+	//constructor 
 	public Deck() {
 		deck = new Stack<Card>();
 	}
 	
 	public int size() {return deck.size();}
+	
+	/*private Card newCard(Card.Suit suit, int rank) {
+		Card card;
+		try {
+			card = new Card(suit, rank);
+			return card;
+		}catch(InvalidCardException e) {
+			return null;
+		}
+		
+	}*/
+	//private Card newCard(String str) {}
 	
 	//deck initialization
 	//console: add all 52 card and shuffle
@@ -19,8 +31,13 @@ public class Deck {
 		//initial deck with 52 card and randomly shuffle
 		for(Card.Suit s: Card.Suit.values()) {
 			for (int i = 1; i < 14; i++) {
-				Card c = new Card(s, i);
-				deck.push(c);
+				try {
+					Card c = new Card(s, i);
+					deck.push(c);
+				}catch (InvalidCardException e) {
+					System.out.println(e.getErrMsg());
+				}
+				
 			}
 		}
 		Collections.shuffle(deck);
@@ -29,7 +46,11 @@ public class Deck {
 	//file: read from a file
 	public void iniDeck(Stack<String> s) {
 		while (s.size() > 0) {
-			deck.push(new Card(s.pop()));
+			try{
+				deck.push(new Card(s.pop()));
+			}catch (InvalidCardException e) {
+				System.out.println(e.getErrMsg());
+			}
 		}
 	}
 	/*public void iniFDeck(String fileName) {

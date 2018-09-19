@@ -55,4 +55,14 @@ public class GameTest extends TestCase{
 		assertEquals(d, testGame.determineWinner());
 		assertEquals(null, testGame.determineWinner().findBestHand());	
 	}
+	//player wins because dealer bust, player no
+	public void testDetermineWinner6() {
+		Game testGame = new Game();
+		Player d = testGame.getPlayer();
+		testGame.playerDrawTwo(new Card("C10"), new Card("D6"));
+		testGame.dealerDrawTwo(new Card("C6"), new Card("HQ"));
+		testGame.getDealer().hit(new Card("SQ"));
+		assertEquals(d, testGame.determineWinner());
+		assertEquals(16, testGame.determineWinner().findBestHand().getScore());
+	}
 }
