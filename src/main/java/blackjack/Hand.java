@@ -34,7 +34,8 @@ public class Hand {
 		int amountOfAce = 0;
 		int s = 0;
 		for (Card c : this.hand) {
-			if (c.getRank() == 1) {
+			if (c == null) break;
+			if (c.getRank() == 1) { 
 				s += 11;
 				amountOfAce += 1;
 			} else if(c.getRank() > 10) s+= 10;

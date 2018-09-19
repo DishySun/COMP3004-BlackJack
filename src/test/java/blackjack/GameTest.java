@@ -2,12 +2,20 @@ package blackjack;
 import junit.framework.TestCase;
 
 public class GameTest extends TestCase{
+	private Card newCard(String s) {
+		try {return new Card(s);}
+		catch(InvalidCardException e){
+			System.out.println(e.getErrMsg());
+			e.printStackTrace();
+		}
+		return null;
+	}
 	//player get Black Jack but dealer not. Win: player
 	public void testDetermineWinner1() {
 		Game testGame = new Game();
 		Player p = testGame.getPlayer();
-		testGame.playerDrawTwo(new Card("SA"), new Card("DQ"));
-		testGame.dealerDrawTwo(new Card("C9"), new Card("H2"));
+		testGame.playerDrawTwo(newCard("SA"), newCard("DQ"));
+		testGame.dealerDrawTwo(newCard("C9"), newCard("H2"));
 		assertEquals(p, testGame.determineWinner());
 		assertEquals(21, testGame.determineWinner().findBestHand().getScore());	
 	}
@@ -15,8 +23,8 @@ public class GameTest extends TestCase{
 	public void testDetermineWinner2() {
 		Game testGame = new Game();
 		Dealer d = testGame.getDealer();
-		testGame.playerDrawTwo(new Card("SA"), new Card("DQ"));
-		testGame.dealerDrawTwo(new Card("CA"), new Card("H10"));
+		testGame.playerDrawTwo(newCard("SA"), newCard("DQ"));
+		testGame.dealerDrawTwo(newCard("CA"), newCard("H10"));
 		assertEquals(d, testGame.determineWinner());
 		assertEquals(21, testGame.determineWinner().findBestHand().getScore());	
 	}
@@ -24,10 +32,10 @@ public class GameTest extends TestCase{
 	public void testDetermineWinner3() {
 		Game testGame = new Game();
 		Player p = testGame.getPlayer();
-		testGame.playerDrawTwo(new Card("C10"), new Card("D6"));
-		testGame.dealerDrawTwo(new Card("C6"), new Card("HQ"));
-		testGame.getPlayer().hit(new Card("H3"));
-		testGame.getDealer().hit(new Card("C2"));
+		testGame.playerDrawTwo(newCard("C10"), newCard("D6"));
+		testGame.dealerDrawTwo(newCard("C6"), newCard("HQ"));
+		testGame.getPlayer().hit(newCard("H3"));
+		testGame.getDealer().hit(newCard("C2"));
 		testGame.getDealer().stand();
 		testGame.getPlayer().stand();
 		assertEquals(p, testGame.determineWinner());
@@ -37,10 +45,10 @@ public class GameTest extends TestCase{
 	public void testDetermineWinner4() {
 		Game testGame = new Game();
 		Dealer d = testGame.getDealer();
-		testGame.playerDrawTwo(new Card("C10"), new Card("D6"));
-		testGame.dealerDrawTwo(new Card("C6"), new Card("HQ"));
-		testGame.getPlayer().hit(new Card("H3"));
-		testGame.getDealer().hit(new Card("C3"));
+		testGame.playerDrawTwo(newCard("C10"), newCard("D6"));
+		testGame.dealerDrawTwo(newCard("C6"), newCard("HQ"));
+		testGame.getPlayer().hit(newCard("H3"));
+		testGame.getDealer().hit(newCard("C3"));
 		testGame.getDealer().stand();
 		testGame.getPlayer().stand();
 		assertEquals(d, testGame.determineWinner());
@@ -50,8 +58,8 @@ public class GameTest extends TestCase{
 	public void testDetermineWinner5() {
 		Game testGame = new Game();
 		Dealer d = testGame.getDealer();
-		testGame.playerDrawTwo(new Card("C10"), new Card("D6"));
-		testGame.getPlayer().hit(new Card("H9"));
+		testGame.playerDrawTwo(newCard("C10"), newCard("D6"));
+		testGame.getPlayer().hit(newCard("H9"));
 		assertEquals(d, testGame.determineWinner());
 		assertEquals(null, testGame.determineWinner().findBestHand());	
 	}
@@ -59,9 +67,9 @@ public class GameTest extends TestCase{
 	public void testDetermineWinner6() {
 		Game testGame = new Game();
 		Player d = testGame.getPlayer();
-		testGame.playerDrawTwo(new Card("C10"), new Card("D6"));
-		testGame.dealerDrawTwo(new Card("C6"), new Card("HQ"));
-		testGame.getDealer().hit(new Card("SQ"));
+		testGame.playerDrawTwo(newCard("C10"), newCard("D6"));
+		testGame.dealerDrawTwo(newCard("C6"), newCard("HQ"));
+		testGame.getDealer().hit(newCard("SQ"));
 		assertEquals(d, testGame.determineWinner());
 		assertEquals(16, testGame.determineWinner().findBestHand().getScore());
 	}

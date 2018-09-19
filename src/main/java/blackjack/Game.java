@@ -32,20 +32,69 @@ public class Game {
 		deck.iniDeck(s);
 	}
 	
+	/*private Card draw() {
+		try {
+			return deck.draw();
+		}catch (DrawEmptyDeckException e) {
+			System.out.println("Trying to draw from an empty deck.");
+			e.printStackTrace();
+			return null;
+		}
+	}*/
 	//methods from Participant
 	public void playerDrawTwo(Card c1, Card c2) {player.drawTwoToStart(c1, c2);}
 	public void dealerDrawTwo(Card c1, Card c2) {dealer.drawTwoToStart(c1, c2);}
-	public void playerSplit() {player.split(deck.draw(), deck.draw());}
-	public void dealerSplit() {dealer.split(deck.draw(), deck.draw());}
-	public void playerHit() {player.hit(deck.draw());}
-	public void dealerHit() {dealer.hit(deck.draw());}
+	public void playerSplit() {
+		try{
+			player.split(deck.draw(), deck.draw());
+		}catch (DrawEmptyDeckException e) {
+			System.out.println("Trying to draw from an empty deck.");
+			e.printStackTrace();
+			player.stand();
+		}
+	}
+	public void dealerSplit() {
+		try{
+			dealer.split(deck.draw(), deck.draw());
+		}catch (DrawEmptyDeckException e) {
+			System.out.println("Trying to draw from an empty deck.");
+			e.printStackTrace();
+			dealer.stand();
+		}
+	}
+	public void playerHit() {
+		try{
+			player.hit(deck.draw());
+		}catch (DrawEmptyDeckException e) {
+			System.out.println("Trying to draw from an empty deck.");
+			e.printStackTrace();
+			player.stand();
+		}
+	}
+	public void dealerHit() {
+		try{
+			dealer.hit(deck.draw());
+		}catch (DrawEmptyDeckException e) {
+			System.out.println("Trying to draw from an empty deck.");
+			e.printStackTrace();
+			dealer.stand();
+		}
+	}
+
 	public void playerStand() {player.stand();}
 	public void dealerStand() {dealer.stand();}
 	
 	//Game methods
 	public void drawTwoAtBeginnin() {
-		player.drawTwoToStart(deck.draw(), deck.draw());
-		dealer.drawTwoToStart(deck.draw(), deck.draw());
+		try{
+			player.drawTwoToStart(deck.draw(), deck.draw());
+			dealer.drawTwoToStart(deck.draw(), deck.draw());
+		}catch (DrawEmptyDeckException e) {
+			System.out.println("Trying to draw from an empty deck.");
+			e.printStackTrace();
+			player.stand();
+			dealer.stand();
+		}
 	}
 	public Boolean canPlayerSplit() {
 		return player.canSplit();

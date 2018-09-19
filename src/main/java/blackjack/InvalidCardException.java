@@ -6,27 +6,27 @@ public class InvalidCardException extends Exception{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int rank;
-	private String suit;
 	private String errMsg;
 	
+	public InvalidCardException(int r) {
+		errMsg = r + " is not a valid rank.";
+	}
+	
 	public InvalidCardException(String s) {
-		suit = s;
 		errMsg = s + " is not a valid suit.";
 	}
 	
-	public InvalidCardException(int r) {
-		rank = r;
-		errMsg = r + " is not a valid rank.";
+	public InvalidCardException(String s,boolean b) {
+		errMsg = s + " is not a valid rank.";
 	}
 
-	public InvalidCardException(int r, String s) {
-		rank = r;
-		suit = s;
+	public InvalidCardException(String s, String r) {
 		errMsg = s + " is not a valid suit and "+r+" is not a valid rank.";
 	}
-	public int getRank() {return rank;}
-	public String getSuit() {return suit;}
+	
+	public InvalidCardException(String s, int r) {
+		errMsg = s + " is not a valid suit and "+r+" is not a valid rank.";
+	}
 	public String getErrMsg() {return errMsg;}
 
 }

@@ -18,12 +18,17 @@ public class Card {
 		else if (r.equals("J")) rank = 11;
 		else if (r.equals("Q")) rank = 12;
 		else if (r.equals("K")) rank = 13;
-		else if (Integer.parseInt(r) > 13) rank = -1;
-		else rank = Integer.parseInt(r);
+		else {
+			try{
+				rank = Integer.parseInt(r);
+			}catch(NumberFormatException e) {
+				if (!validSuit(s)) throw new InvalidCardException(s, r);
+			}
+		}
 		
-		if (!validSuit(s) && !validRank(rank))  throw new InvalidCardException(rank ,s);
+		if (!validSuit(s) && !validRank(rank))  throw new InvalidCardException(s, rank);
 		else if (!validSuit(s)) throw new InvalidCardException(s);
-		else if (!validRank(rank)) throw new InvalidCardException(r);
+		else if (!validRank(rank)) throw new InvalidCardException(r, true);
 		suit = Suit.valueOf(s);
 		
 	}

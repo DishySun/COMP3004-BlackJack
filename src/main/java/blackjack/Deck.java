@@ -50,6 +50,7 @@ public class Deck {
 				deck.push(new Card(s.pop()));
 			}catch (InvalidCardException e) {
 				System.out.println(e.getErrMsg());
+				e.printStackTrace();
 			}
 		}
 	}
@@ -92,6 +93,10 @@ public class Deck {
 	    while (strList.size() > 0) {deck.push(new Card(strList.pop()));}
 	}*/
 	
-	public Card draw() {return deck.pop();}
+	public Card draw() throws DrawEmptyDeckException{
+		if (deck.size() == 0)throw new DrawEmptyDeckException();
+		return deck.pop();
+		
+	}
 	
 }

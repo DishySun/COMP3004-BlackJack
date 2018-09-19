@@ -1,6 +1,7 @@
 package blackjack;
 import java.io.*;
 import java.util.Arrays;
+import java.util.EmptyStackException;
 import java.util.Stack;
 import java.util.ArrayList;
 
@@ -37,7 +38,13 @@ public class GameControl {
 	
 	private void playerTurn(Stack<String> choice) {
 		while (!game.getPlayer().isFinish()) {
-			String c = choice.pop();
+			String c;
+			try{
+				c = choice.pop();
+			}catch(EmptyStackException e) {
+				c = "S";
+				e.printStackTrace();
+			}
 			if (c.equals("H")) {
 				System.out.println("Player chooses to Hit.");
 				game.playerHit();

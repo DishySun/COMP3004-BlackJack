@@ -5,7 +5,7 @@ public class DeckTest extends TestCase{
 	public void testConstructor() {
 		Deck testDeck = new Deck();
 		assertEquals(0, testDeck.size());
-	}
+	} 
 	
 	public void testIniCDeck() {
 		Deck testDeck = new Deck();
@@ -20,8 +20,15 @@ public class DeckTest extends TestCase{
 		testDeck2.iniDeck();
 		int timesDrewTwoSameCard = 0;
 		for (int i = 0; i < 50; i++) {
-			Card c1 = testDeck1.draw();
-			Card c2 = testDeck2.draw();
+			Card c1;
+			Card c2;
+			try {
+				c1 = testDeck1.draw();
+				c2 = testDeck2.draw();
+			}catch (DrawEmptyDeckException e) {
+				c1 = null;
+				c2 = null;
+			}
 			if(c1.getSuit() == c2.getSuit() && c1.getRank() == c2.getRank())
 				timesDrewTwoSameCard++;
 		}
