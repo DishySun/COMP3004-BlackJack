@@ -42,8 +42,23 @@ public class Game {
 		}
 	}*/
 	//methods from Participant
-	public void playerDrawTwo(Card c1, Card c2) {player.drawTwoToStart(c1, c2);}
-	public void dealerDrawTwo(Card c1, Card c2) {dealer.drawTwoToStart(c1, c2);}
+	public void playerDrawTwo(Card c1, Card c2) {
+		try{
+			player.drawTwoToStart(c1, c2);
+		}catch (DuplicateCardException e) {
+			System.out.println(e.getCard() + " is duplicated.");
+			e.printStackTrace();
+		}
+	}
+	public void dealerDrawTwo(Card c1, Card c2) {
+		try{
+			dealer.drawTwoToStart(c1, c2);
+		}catch (DuplicateCardException e) {
+			System.out.println(e.getCard() + " is duplicated.");
+			e.printStackTrace();
+			dealer.stand();
+		}
+	}
 	public void playerSplit() {
 		try{
 			player.split(deck.draw(), deck.draw());
@@ -51,6 +66,9 @@ public class Game {
 			System.out.println("Trying to draw from an empty deck.");
 			e.printStackTrace();
 			player.stand();
+		}catch (DuplicateCardException e) {
+			System.out.println(e.getCard() + " is duplicated.");
+			e.printStackTrace();
 		}
 	}
 	public void dealerSplit() {
@@ -58,6 +76,10 @@ public class Game {
 			dealer.split(deck.draw(), deck.draw());
 		}catch (DrawEmptyDeckException e) {
 			System.out.println("Trying to draw from an empty deck.");
+			e.printStackTrace();
+			dealer.stand();
+		}catch (DuplicateCardException e) {
+			System.out.println(e.getCard() + " is duplicated.");
 			e.printStackTrace();
 			dealer.stand();
 		}
@@ -69,6 +91,9 @@ public class Game {
 			System.out.println("Trying to draw from an empty deck.");
 			e.printStackTrace();
 			player.stand();
+		}catch (DuplicateCardException e) {
+			System.out.println(e.getCard() + " is duplicated.");
+			e.printStackTrace();
 		}
 	}
 	public void dealerHit() {
@@ -76,6 +101,10 @@ public class Game {
 			dealer.hit(deck.draw());
 		}catch (DrawEmptyDeckException e) {
 			System.out.println("Trying to draw from an empty deck.");
+			e.printStackTrace();
+			dealer.stand();
+		}catch (DuplicateCardException e) {
+			System.out.println(e.getCard() + " is duplicated.");
 			e.printStackTrace();
 			dealer.stand();
 		}
@@ -94,6 +123,9 @@ public class Game {
 			e.printStackTrace();
 			player.stand();
 			dealer.stand();
+		}catch (DuplicateCardException e) {
+			System.out.println(e.getCard() + " is duplicated.");
+			e.printStackTrace();
 		}
 	}
 	public Boolean canPlayerSplit() {

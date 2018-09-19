@@ -44,6 +44,10 @@ public class Card {
 		if (test > 0 && test < 14) return true;
 		return false;
 	}
+	public boolean compareTo(Card c) {
+		if (c.getSuit() == suit && c.getRank() == rank) return true;
+		else return false;
+	}
 
 	//getters
 	public Suit getSuit() {return suit;}

@@ -25,22 +25,35 @@ public abstract class Participant {
 	public Boolean isFinish() {return finish;}
 	
 	//algorithm
-	public void drawTwoToStart(Card c1, Card c2) {
+	public void drawTwoToStart(Card c1, Card c2) throws DuplicateCardException{
 		hands.add(new Hand());
+		if (c1.compareTo(c2)) throw new DuplicateCardException(c1);
 		getFirstHand().add(c1);
 		getFirstHand().add(c2);
 		if (getFirstHand().getScore() == 21) finish = true;
 		else finish = false;
 	}
 	//protected abstract Boolean canSplit();
-	public void split(Card c1, Card c2) {
+	public void split(Card c1, Card c2) throws DuplicateCardException{
 		hands.add(new Hand());
+		if (c1.compareTo(c2)) throw new DuplicateCardException(c1);
+		for (Card c : getFirstHand().getHand()) {
+			if (c.compareTo(c1) || c.compareTo(c2)) throw new DuplicateCardException(c);
+		}
 		getSplitHand().add(getFirstHand().remove());
 		getFirstHand().add(c1);
 		getSplitHand().add(c2);
 		if(getFirstHand().getScore() == 21 || getSplitHand().getScore() == 21) finish = true;
 	}
-	public void hit(Card c) {
+	public void hit(Card c) throws DuplicateCardException{
+		for (Card card : getFirstHand().getHand()) {
+			if (c.compareTo(card)) throw new DuplicateCardException(c);
+		}
+		if(hands.size()>1) {
+			for (Card card : getSplitHand().getHand()) {
+				if (c.compareTo(card)) throw new DuplicateCardException(c);
+			}
+		}
 		if (getFirstHand().isBust() || getFirstHand().isStand()) {
 			getSplitHand().add(c);
 			if (getSplitHand().isBust()) finish = true;

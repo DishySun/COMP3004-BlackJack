@@ -10,6 +10,21 @@ public class GameTest extends TestCase{
 		}
 		return null;
 	}
+	private void hit(Player p, String s) {
+		try {
+			p.hit(newCard(s));
+		}catch (DuplicateCardException e) {
+			e.printStackTrace();
+		}
+	}
+	private void hit(Dealer d, String s) {
+		try {
+			d.hit(newCard(s));
+		}catch (DuplicateCardException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//player get Black Jack but dealer not. Win: player
 	public void testDetermineWinner1() {
 		Game testGame = new Game();
@@ -34,8 +49,8 @@ public class GameTest extends TestCase{
 		Player p = testGame.getPlayer();
 		testGame.playerDrawTwo(newCard("C10"), newCard("D6"));
 		testGame.dealerDrawTwo(newCard("C6"), newCard("HQ"));
-		testGame.getPlayer().hit(newCard("H3"));
-		testGame.getDealer().hit(newCard("C2"));
+		hit(testGame.getPlayer(),"H3");
+		hit(testGame.getDealer(),"C2");
 		testGame.getDealer().stand();
 		testGame.getPlayer().stand();
 		assertEquals(p, testGame.determineWinner());
@@ -47,8 +62,8 @@ public class GameTest extends TestCase{
 		Dealer d = testGame.getDealer();
 		testGame.playerDrawTwo(newCard("C10"), newCard("D6"));
 		testGame.dealerDrawTwo(newCard("C6"), newCard("HQ"));
-		testGame.getPlayer().hit(newCard("H3"));
-		testGame.getDealer().hit(newCard("C3"));
+		hit(testGame.getPlayer(),"H3");
+		hit(testGame.getDealer(),"C3");
 		testGame.getDealer().stand();
 		testGame.getPlayer().stand();
 		assertEquals(d, testGame.determineWinner());
@@ -59,7 +74,7 @@ public class GameTest extends TestCase{
 		Game testGame = new Game();
 		Dealer d = testGame.getDealer();
 		testGame.playerDrawTwo(newCard("C10"), newCard("D6"));
-		testGame.getPlayer().hit(newCard("H9"));
+		hit(testGame.getPlayer(),"H9");
 		assertEquals(d, testGame.determineWinner());
 		assertEquals(null, testGame.determineWinner().findBestHand());	
 	}
@@ -69,7 +84,7 @@ public class GameTest extends TestCase{
 		Player d = testGame.getPlayer();
 		testGame.playerDrawTwo(newCard("C10"), newCard("D6"));
 		testGame.dealerDrawTwo(newCard("C6"), newCard("HQ"));
-		testGame.getDealer().hit(newCard("SQ"));
+		hit(testGame.getDealer(),"SQ");
 		assertEquals(d, testGame.determineWinner());
 		assertEquals(16, testGame.determineWinner().findBestHand().getScore());
 	}
