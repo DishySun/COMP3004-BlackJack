@@ -45,7 +45,7 @@ public abstract class Participant {
 		getSplitHand().add(c2);
 		if(getFirstHand().getScore() == 21 || getSplitHand().getScore() == 21) finish = true;
 	}
-	public void hit(Card c) throws DuplicateCardException{
+	public int hit(Card c) throws DuplicateCardException{
 		for (Card card : getFirstHand().getHand()) {
 			if (c.compareTo(card)) throw new DuplicateCardException(c);
 		}
@@ -57,15 +57,22 @@ public abstract class Participant {
 		if (getFirstHand().isBust() || getFirstHand().isStand()) {
 			getSplitHand().add(c);
 			if (getSplitHand().isBust()) finish = true;
+			return 1;
 		} else {
 			getFirstHand().add(c);
 			if (getFirstHand().isBust() && hands.size()<2) finish = true;
+			return 0;
 		}
 	}
-	public void stand() {
-		if (hands.size() > 1 && !getFirstHand().isBust() && !getFirstHand().isStand())
+	public int stand() {
+		if (hands.size() > 1 && !getFirstHand().isBust() && !getFirstHand().isStand()) {
 			getFirstHand().standThis();
-		else finish = true;
+			return 0;
+		}
+		else {
+			finish = true;
+			return 1;
+		}
 	}
 	public Hand findBestHand() {
 		if (hands.size() == 0) return null;

@@ -13,17 +13,6 @@ public class Deck {
 	
 	public int size() {return deck.size();}
 	
-	/*private Card newCard(Card.Suit suit, int rank) {
-		Card card;
-		try {
-			card = new Card(suit, rank);
-			return card;
-		}catch(InvalidCardException e) {
-			return null;
-		}
-		
-	}*/
-	//private Card newCard(String str) {}
 	
 	//deck initialization
 	//console: add all 52 card and shuffle
@@ -54,44 +43,7 @@ public class Deck {
 			}
 		}
 	}
-	/*public void iniFDeck(String fileName) {
-		String path = "src/main/resources/" + fileName;
-		String line = null;
-		String a = null;
-	    try {
-	        // FileReader reads text files in the default encoding.
-	        FileReader fileReader =
-	            new FileReader(path);
 
-	        // Always wrap FileReader in BufferedReader.
-	        BufferedReader bufferedReader =
-	            new BufferedReader(fileReader);
-
-	        while((line = bufferedReader.readLine()) != null) {
-	            a = line;
-	        }
-
-	        // Always close files.
-	        bufferedReader.close();
-	    }
-	    catch(FileNotFoundException ex) {
-	        System.out.println(
-	            "Unable to open file '" +
-	            fileName + "'");
-	    }
-	    catch(IOException ex) {
-	        System.out.println(
-	            "Error reading file '"
-	            + fileName + "'");
-	        // Or we could just do this:
-	        // ex.printStackTrace();
-	    }
-	    //Stack<String> arr = new Stack<String>(Arrays.asList(a.split("\\s+"));
-	    String[] arr = a.split("\\s+");
-	    Stack<String> strList = new Stack<String>();
-	    strList.addAll(Arrays.asList(arr));
-	    while (strList.size() > 0) {deck.push(new Card(strList.pop()));}
-	}*/
 	
 	public Card draw() throws DrawEmptyDeckException{
 		if (deck.size() == 0)throw new DrawEmptyDeckException();

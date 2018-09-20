@@ -126,7 +126,7 @@ public class GameControl {
 		while (scenarioPlayerChoice.size() > 0) c.add(scenarioPlayerChoice.pop());
 		scenarioDeck.addAll(d);
 		scenarioPlayerChoice.addAll(c);
-		game = new Game("Scenario Player(AI)");
+		game = new Game("Puppet Player(AI)");
 		System.out.println("\n--------Start a game with file input--------");
 		game.iniDeck(scenarioDeck);
 		game.drawTwoAtBeginnin();
@@ -155,13 +155,10 @@ public class GameControl {
 			String a = "";
 			try {
 		        // FileReader reads text files in the default encoding.
-		        FileReader fileReader =
-		            new FileReader(path);
-	
+		        FileReader fileReader = new FileReader(path);
 		        // Always wrap FileReader in BufferedReader.
-		        BufferedReader bufferedReader =
-		            new BufferedReader(fileReader);
-		        		while((line = bufferedReader.readLine()) != null) {
+		        BufferedReader bufferedReader = new BufferedReader(fileReader);
+		        	while((line = bufferedReader.readLine()) != null) {
 		            a += line;
 	        		}
 		        // Always close files.
